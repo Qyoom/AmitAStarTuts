@@ -22,7 +22,7 @@
     });
 
     //console.log("all_nodes.length: " + all_nodes.length);
-    console.log("==> all_nodes: " + JSON.stringify(all_nodes));
+    //console.log("==> all_nodes: " + JSON.stringify(all_nodes));
 
     function neighbors(node) {
         console.log("node: " + JSON.stringify(node));
@@ -41,10 +41,10 @@
                 node[0] + dir[0], // x
                 node[1] + dir[1]  // y
             ];
-            console.log("<1>neighbor: " + JSON.stringify(neighbor));
+            //console.log("<1>neighbor: " + JSON.stringify(neighbor));
             if(nodesContains(neighbor))
             {
-                console.log("<2>neighbor: " + JSON.stringify(neighbor));
+                console.log("neighbor: " + JSON.stringify(neighbor));
                 result.push(neighbor);
             }
         });
@@ -54,12 +54,17 @@
 
     function nodesContains(neighbor) {
         result = false;
+        /* TODO: Set i to neighbor[0].toString().concat(neighbor[1].toString())
+         * If i is undefined, result = false
+         * If i is < 0, result = false
+         * If i is > all_nodes.length, result = false
+         * Then, search from index i in for loop.
+         */
         for(var i = 0; i < all_nodes.length; i++) {
             if(all_nodes[i][0] === neighbor[0] && 
                  all_nodes[i][1] === neighbor[1]
             ) {
                 result = true;
-                //console.log("neighbor FALSE: " + neighbor);
                 break;
             }
         }
