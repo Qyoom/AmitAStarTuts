@@ -21,11 +21,12 @@
         });
     });
 
-    console.log("all_nodes.length: " + all_nodes.length);
+    //console.log("all_nodes.length: " + all_nodes.length);
+    console.log("==> all_nodes: " + JSON.stringify(all_nodes));
 
     function neighbors(node) {
-        console.log("node: " + node);
-        
+        console.log("node: " + JSON.stringify(node));
+
         var directions = [
             [0, 1],  // east
             [1, 0],  // north
@@ -33,22 +34,40 @@
             [0, -1]  // south
         ];
 
-        result = [];
+        var result = [];
 
         _.each(directions, function(dir) {
             var neighbor = [
                 node[0] + dir[0], // x
                 node[1] + dir[1]  // y
             ];
-            console.log("neighbor: " + neighbor);
-            result.push[neighbor];
+            console.log("<1>neighbor: " + JSON.stringify(neighbor));
+            if(nodesContains(neighbor))
+            {
+                console.log("<2>neighbor: " + JSON.stringify(neighbor));
+                result.push(neighbor);
+            }
         });
 
         return result;
     }
 
+    function nodesContains(neighbor) {
+        result = false;
+        for(var i = 0; i < all_nodes.length; i++) {
+            if(all_nodes[i][0] === neighbor[0] && 
+                 all_nodes[i][1] === neighbor[1]
+            ) {
+                result = true;
+                //console.log("neighbor FALSE: " + neighbor);
+                break;
+            }
+        }
+        if(!result) console.log("nodesContains " + neighbor + " " + result);
+        return result;
+    }
+
     _.each(all_nodes, function(n) {
-        //console.log("n: " + n);
         console.log("-------");
         neighbors(n);
     });
