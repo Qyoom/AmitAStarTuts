@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Amit Graph Tut 1</title>
+    <title>Amit Graph Tut 3</title>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 </head>
@@ -27,12 +27,17 @@
     function neighbors(node) {
         console.log("node: " + JSON.stringify(node));
 
+        // Including diagonals
         // Assuming svg origin [0,0] as upper left.
         var directions = [
-            [0, 1],  // south
-            [1, 0],  // east
-            [-1, 0], // north
-            [0, -1]  // west
+            [0, 1],   // south
+            [1, 1],   // south-east
+            [1, 0],   // east
+            [1, -1],  // north-east
+            [-1, 0],  // north
+            [-1, -1], // north-west
+            [0, -1],  // west
+            [-1, 1]   // south-west
         ];
 
         var result = [];
@@ -42,7 +47,7 @@
                 node[0] + dir[0], // x
                 node[1] + dir[1]  // y
             ];
-            
+
             if(nodesContains(neighbor)) {
                 console.log("neighbor: " + JSON.stringify(neighbor));
                 result.push(neighbor);
@@ -53,21 +58,13 @@
     }
 
     function nodesContains(neighbor) {
-        result = false;
-        /* TODO: Set i to neighbor[0].toString().concat(neighbor[1].toString())
-         * If i is undefined, result = false
-         * If i is < 0, result = false
-         * If i is > all_nodes.length, result = false
-         * Then, search from index i in for loop.
-         */
-        for(var i = 0; i < all_nodes.length; i++) {
-            if(all_nodes[i][0] === neighbor[0] && 
-                 all_nodes[i][1] === neighbor[1]
-            ) {
-                result = true;
-                break;
-            }
-        }
+        result = true;
+        // test on range
+        if(
+            neighbor[0] < 0 || 19 < neighbor[0] ||
+            neighbor[1] < 0 || 9  < neighbor[1]
+        ) result = false;
+
         if(!result) console.log("nodesContains " + neighbor + " " + result);
         return result;
     }
