@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <title>Amit Graph Tut 1</title>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+</head>
+
+<body>
+</body>
+
+<script>
+    // http://www.redblobgames.com/pathfinding/grids/graphs.html
+
+    /** square grid, list of nodes */
+
+    var all_nodes = [];
+
+    _.each(_.range(20), function(x) { 
+        _.each(_.range(10), function(y) {
+            all_nodes.push([x, y]);
+        });
+    });
+
+    console.log("all_nodes.length: " + all_nodes.length);
+
+    function neighbors(node) {
+        console.log("node: " + node);
+        
+        var directions = [
+            [0, 1],  // east
+            [1, 0],  // north
+            [-1, 0], // west
+            [0, -1]  // south
+        ];
+
+        result = [];
+
+        _.each(directions, function(dir) {
+            var neighbor = [
+                node[0] + dir[0], // x
+                node[1] + dir[1]  // y
+            ];
+            console.log("neighbor: " + neighbor);
+            result.push[neighbor];
+        });
+
+        return result;
+    }
+
+    _.each(all_nodes, function(n) {
+        //console.log("n: " + n);
+        console.log("-------");
+        neighbors(n);
+    });
+
+</script>
+
+
+
+
+
+
